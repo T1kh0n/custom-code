@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свой Код | Разработка независимых сайтов для бизнеса</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- БАЗОВЫЕ ПЕРЕМЕННЫЕ И РЕСЕТ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --blue: #3b82f6;
+            --blue-light: #e0f2fe;
+            --blue-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --bg-gray: #f9fafb;
+            --container-width: 1140px;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        /* --- ХЕДЕР --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .logo i { color: var(--blue); font-size: 24px; }
+
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav ul a {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+        nav ul a:hover { color: var(--blue); }
+
+        .btn-black {
+            background: #111;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-black:hover {
+            background: var(--blue);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO СЕКЦИЯ --- */
+        .hero-wrapper {
+            margin-top: 10px;
+            margin-bottom: 80px;
+        }
+
+        .hero-container {
+            background: var(--blue-gradient);
+            border-radius: 40px;
+            height: 580px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 120px;
+        }
+
+        .hero-indicator {
+            position: absolute;
+            left: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .hero-indicator::before {
+            content: ''; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 1px; background: rgba(255,255,255,0.4); z-index: -1;
+        }
+
+        .indicator-dot {
+            width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.8);
+            display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--text-main); background: rgba(255,255,255,0.3);
+        }
+        .indicator-dot.active { background: #fff; border-color: #fff; font-weight: 600; }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .hero-subtitle {
+            font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: var(--blue);
+            margin-bottom: 20px; text-transform: uppercase;
+            background: #fff; display: inline-block; padding: 6px 16px; border-radius: 20px;
+        }
+
+        .hero-title {
+            font-size: 56px; font-weight: 800; line-height: 1.1; color: var(--text-main);
+            margin-bottom: 25px; letter-spacing: -1.5px;
+        }
+
+        .hero-desc {
+            font-size: 15px; color: var(--text-muted); margin-bottom: 40px; max-width: 500px; line-height: 1.7; font-weight: 500;
+        }
+
+        .hero-actions { display: flex; align-items: center; gap: 20px; }
+
+        .btn-blue {
+            background: var(--blue); color: #fff; padding: 18px 40px; border-radius: 40px;
+            font-size: 14px; font-weight: 600; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            border: none; cursor: pointer; transition: 0.3s;
+        }
+        .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
+
+        .play-btn {
+            width: 54px; height: 54px; background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 18px; transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .play-btn:hover { background: var(--text-main); color: #fff; transform: translateY(-3px); }
+
+        .know-more-cutout {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 380px;
+            height: 110px;
+            background: #fff;
+            border-top-left-radius: 40px;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+        }
+
+        .know-more-cutout::before {
+            content: ''; position: absolute; bottom: 0; left: -40px; width: 40px; height: 40px;
+            background: transparent; box-shadow: 20px 20px 0 20px #fff; border-bottom-right-radius: 40px; pointer-events: none;
+        }
+        .know-more-cutout::after {
+            content: ''; position: absolute; top: -40px; right: 0; width: 40px; height: 40px;
+            background: transparent; box-shadow: 20px 20px 0 20px #fff; border-bottom-right-radius: 40px; pointer-events: none;
+        }
+
+        .km-content {
+            padding-left: 40px; width: 100%; display: flex; flex-direction: column; gap: 8px;
+        }
+
+        .km-header { display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 700; padding-right: 30px;}
+        .km-body { display: flex; align-items: center; gap: 15px; }
+        .km-icon { width: 40px; height: 40px; background: var(--bg-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 16px; }
+        .km-text p { font-size: 11px; color: var(--text-muted); line-height: 1.4; max-width: 250px; font-weight: 500; }
+
+        /* --- БЛОК БОЛЕЙ (BENEFITS) --- */
+        .section-wrapper { padding: 60px 0; }
+        
+        .section-head {
+            display: flex; flex-direction: column; margin-bottom: 50px;
+        }
+        .section-head h2 { font-size: 36px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .section-head p { font-size: 15px; color: var(--text-muted); max-width: 650px; }
+
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+        }
+
+        .benefit-card {
+            background: var(--bg-gray); border-radius: 32px; padding: 40px 30px;
+            transition: 0.3s; border: 2px solid transparent;
+        }
+        .benefit-card:hover { background: #fff; border-color: var(--blue-light); box-shadow: 0 20px 40px rgba(0,0,0,0.04); transform: translateY(-5px); }
+        
+        .benefit-icon {
+            width: 54px; height: 54px; background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: var(--text-main);
+            font-size: 20px; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .benefit-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .benefit-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+        /* --- ПОРТФОЛИО --- */
+        .dest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        .dest-card { display: flex; flex-direction: column; gap: 20px; cursor: pointer; }
+        .dest-card:hover .dest-img { transform: scale(1.03); }
+        
+        .dest-img-wrapper { overflow: hidden; border-radius: 32px; height: 260px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); background: var(--bg-gray); }
+        .dest-img { width: 100%; height: 100%; object-fit: cover; border-radius: 32px; transition: transform 0.5s ease; opacity: 0.9; }
+        
+        .dest-info { padding: 0 10px; }
+        .dest-title-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .dest-title-row h3 { font-size: 18px; font-weight: 700; line-height: 1.3; max-width: 75%; }
+        
+        .dest-rating {
+            background: var(--blue); color: #fff; padding: 6px 14px; border-radius: 12px;
+            font-size: 11px; font-weight: 700; display: flex; align-items: center;
+        }
+        
+        .dest-loc { font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 16px; position: relative; font-weight: 500; }
+        .dest-loc i { position: absolute; left: 0; top: 4px; color: var(--text-main); font-size: 12px; }
+
+        /* --- ТАРИФЫ --- */
+        .journey-section { text-align: center; }
+        .journey-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        .journey-section > p { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto 50px auto; line-height: 1.6; }
+
+        .journey-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
+            align-items: stretch; margin-bottom: 50px;
+        }
+
+        .j-card {
+            background: var(--bg-gray); border-radius: 32px; padding: 40px 30px;
+            text-align: left; display: flex; flex-direction: column; cursor: pointer;
+            transition: all 0.3s ease; border: 2px solid transparent; min-height: 420px;
+        }
+        .j-card:hover { border-color: var(--blue-light); transform: translateY(-5px); }
+
+        .j-card.active {
+            background: var(--blue); color: #fff;
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3); border-color: var(--blue);
+            transform: translateY(-10px);
+        }
+
+        .j-badge { display: inline-block; padding: 8px 16px; background: #fff; color: var(--blue); border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 30px; align-self: flex-start; }
+        .j-card.active .j-badge { background: rgba(255,255,255,0.2); color: #fff; }
+
+        .j-price { font-size: 36px; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+        .j-title { font-size: 22px; font-weight: 700; margin-bottom: 25px; }
+        
+        .j-features { list-style: none; margin-bottom: auto; }
+        .j-features li { font-size: 13px; margin-bottom: 15px; padding-left: 24px; position: relative; line-height: 1.5; color: var(--text-muted); font-weight: 500; }
+        .j-card.active .j-features li { color: rgba(255,255,255,0.9); }
+        .j-features li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 0; color: var(--blue); font-size: 12px; }
+        .j-card.active .j-features li::before { color: #fff; }
+
+        .btn-wide-wrapper { display: flex; justify-content: center; }
+        .btn-wide {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--blue-light); padding: 22px 40px; border-radius: 20px;
+            font-size: 16px; font-weight: 700; color: var(--text-main); width: 100%; max-width: 500px;
+            border: none; cursor: pointer; transition: 0.3s;
+        }
+        .btn-wide:hover { background: var(--text-main); color: #fff; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        /* --- БЛОК ОТВЕТСТВЕННОСТИ --- */
+        .promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        
+        .resp-box {
+            background: var(--bg-gray); padding: 50px 40px; border-radius: 40px;
+            border: 1px solid #f3f4f6;
+        }
+        .resp-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; letter-spacing: -0.5px; }
+        .resp-icon { width: 48px; height: 48px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text-main); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        .resp-box ul { list-style: none; }
+        .resp-box ul li { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; padding-left: 25px; position: relative; line-height: 1.6; font-weight: 500;}
+        .resp-box ul li::before { content: '\f061'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--blue); font-size: 12px; }
+
+        /* --- FAQ СЕКЦИЯ --- */
+        .faq-section { max-width: 800px; margin: 0 auto; }
+        .faq-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 40px; text-align: center; letter-spacing: -1px; }
+        
+        details { background: var(--bg-gray); border-radius: 24px; margin-bottom: 15px; padding: 25px 30px; transition: 0.3s; border: 2px solid transparent; }
+        details:hover { border-color: var(--blue-light); }
+        details[open] { background: #fff; border-color: var(--blue-light); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        
+        summary { font-size: 16px; font-weight: 700; cursor: pointer; list-style: none; outline: none; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }
+        summary::-webkit-details-marker { display: none; }
+        summary i { color: var(--blue); transition: 0.3s; font-size: 14px; }
+        details[open] summary i { transform: rotate(180deg); color: var(--text-main); }
+        
+        details p { font-size: 14px; color: var(--text-muted); margin-top: 15px; line-height: 1.7; font-weight: 500; }
+
+        /* --- ФУТЕР --- */
+        footer { border-top: 1px solid #f3f4f6; padding: 50px 0; margin-top: 60px; }
+        .footer-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
+        .footer-logo { font-size: 20px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+        .footer-logo i { color: var(--blue); }
+        
+        .footer-disclaimer {
+            font-size: 11px; color: var(--text-muted); max-width: 700px; line-height: 1.6;
+            background: var(--bg-gray); padding: 15px 25px; border-radius: 16px;
+        }
+
+        .footer-links { display: flex; gap: 20px; margin-top: 10px; }
+        .footer-links a { font-size: 12px; font-weight: 600; color: var(--text-main); text-transform: uppercase; text-decoration: underline; text-decoration-color: #e5e7eb; text-underline-offset: 4px; }
+        .footer-links a:hover { color: var(--blue); text-decoration-color: var(--blue); }
+
+        /* --- МОДАЛЬНЫЕ ОКНА --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(4px);
+            display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .modal-content {
+            background: #fff; width: 100%; max-width: 460px; border-radius: 40px;
+            padding: 50px 40px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transform: translateY(20px); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+
+        .modal-close {
+            position: absolute; top: 25px; right: 30px; font-size: 20px; color: var(--text-muted);
+            background: none; border: none; cursor: pointer; transition: 0.3s; width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+        }
+        .modal-close:hover { color: var(--text-main); background: var(--bg-gray); transform: rotate(90deg); }
+
+        .modal-title { font-size: 24px; font-weight: 800; margin-bottom: 5px; letter-spacing: -0.5px; }
+        .modal-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 30px; font-weight: 500; }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-group input {
+            width: 100%; padding: 16px 20px; border-radius: 16px; border: 2px solid transparent;
+            background: var(--bg-gray); font-size: 14px; color: var(--text-main); font-weight: 500;
+            transition: 0.3s; outline: none;
+        }
+        .form-group input:focus { background: #fff; border-color: var(--blue); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.05); }
+
+        .fz-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 30px; cursor: pointer; }
+        .fz-checkbox input { margin-top: 4px; accent-color: var(--blue); width: 16px; height: 16px; cursor: pointer; }
+        .fz-checkbox span { font-size: 11px; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
+        .fz-checkbox a { color: var(--blue); text-decoration: underline; font-weight: 600; }
+
+        .btn-submit {
+            width: 100%; background: var(--blue); color: #fff; padding: 18px; border-radius: 20px;
+            font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .btn-submit:hover { background: var(--text-main); box-shadow: 0 10px 25px rgba(17, 24, 39, 0.2); transform: translateY(-2px); }
+
+        /* --- АДАПТИВНОСТЬ (ИСПРАВЛЕНИЕ КОСЯКОВ) --- */
+        @media (max-width: 992px) {
+            header nav { display: none; }
+            .hero-container { height: auto; padding: 50px 30px; align-items: flex-start; flex-direction: column; border-radius: 32px; }
+            .hero-indicator, .know-more-cutout { display: none; }
+            .hero-content { max-width: 100%; }
+            .hero-title { font-size: 42px; }
+            .benefits-grid, .dest-grid, .journey-grid, .promo-grid { grid-template-columns: 1fr; }
+            .j-card { min-height: auto; }
+            .j-card.active { transform: translateY(0); }
+            .j-card:hover { transform: translateY(0); }
+            .btn-wide-wrapper { padding: 0 20px; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title { font-size: 36px; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .btn-blue, .play-btn { width: 100%; text-align: center; border-radius: 16px; }
+            .play-btn { display: none; } /* Скрываем кнопку со стрелкой на мобилках для чистоты */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo"><i class="fa-solid fa-code"></i> Свой Код</div>
+            <nav>
+                <ul>
+                    <li><a href="#benefits">Преимущества</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#pricing">Тарифы</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <button class="btn-black" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Обсудить проект</button>
+        </header>
+    </div>
+
+    <!-- HERO СЕКЦИЯ -->
+    <section class="container hero-wrapper">
+        <div class="hero-container">
+            
+            <div class="hero-indicator">
+                <div class="indicator-dot active">1</div>
+                <div class="indicator-dot">2</div>
+                <div class="indicator-dot">3</div>
+            </div>
+
+            <div class="hero-content">
+                <p class="hero-subtitle">Свобода от конструкторов</p>
+                <h1 class="hero-title">Ваш сайт —<br>Ваш код.</h1>
+                <p class="hero-desc">Создаем сайты, исходный код которых на 100% принадлежит вашему бизнесу. Никаких ежемесячных подписок, скрытых платежей и ограничений платформ.</p>
+                <div class="hero-actions">
+                    <button class="btn-blue" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Выбрать тариф</button>
+                    <a href="#benefits" class="play-btn"><i class="fa-solid fa-arrow-down"></i></a>
+                </div>
+            </div>
+
+            <div class="know-more-cutout">
+                <div class="km-content">
+                    <div class="km-header">
+                        <span>Юридическая чистота</span>
+                        <i class="fa-solid fa-shield-halved" style="color: var(--blue);"></i>
+                    </div>
+                    <div class="km-body">
+                        <div class="km-icon"><i class="fa-solid fa-file-contract"></i></div>
+                        <div class="km-text">
+                            <p>Работаем по договору. Исходный код и доменное имя — ваша собственность.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- БЛОК БОЛЕЙ -->
+    <section id="benefits" class="container section-wrapper">
+        <div class="section-head">
+            <h2>Почему бизнес выбирает независимость?</h2>
+            <p>Аренда сайта несет скрытые риски для предпринимателей: от ежегодного удорожания тарифов платформ до невозможности забрать свой собственный дизайн при переезде.</p>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h3>Юридическая безопасность</h3>
+                <p>Передаем исключительные права по Акту. Код легально размещается на сертифицированных серверах в РФ, строго соблюдая ФЗ-152 и предписания РКН.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fa-solid fa-credit-card"></i></div>
+                <h3>Никаких скрытых комиссий</h3>
+                <p>Вы оплачиваете разработку только один раз. Дальше — лишь содержание личного независимого сервера напрямую провайдеру (в среднем 200–300 ₽ в месяц).</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <h3>Свобода интеграций</h3>
+                <p>Собственная кодовая база позволяет без проблем внедрять складские системы (1С), любые CRM, шлюзы оплаты или умных AI-ботов без ограничений шаблонов.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОРТФОЛИО -->
+    <section id="portfolio" class="container section-wrapper">
+        <div class="section-head">
+            <h2>Выполненные проекты</h2>
+            <p>Мы создаем не просто красивые картинки, а рабочие инструменты, которые решают коммерческие задачи и приносят бизнесу реальные цифры.</p>
+        </div>
+
+        <div class="dest-grid">
+            <!-- Кейс 1 -->
+            <div class="dest-card">
+                <div class="dest-img-wrapper">
+                    <!-- Заглушка, можно заменить на реальное фото -->
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop" alt="Оптовый магазин" class="dest-img">
+                </div>
+                <div class="dest-info">
+                    <div class="dest-title-row">
+                        <h3>Магазин металлопроката</h3>
+                        <div class="dest-rating">ООО</div>
+                    </div>
+                    <div class="dest-loc"><i class="fa-solid fa-arrow-trend-up"></i> Скорость загрузки +300%<br>Рост заявок из поиска на 45%</div>
+                </div>
+            </div>
+            <!-- Кейс 2 -->
+            <div class="dest-card">
+                <div class="dest-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1656432898164-7634c508cf71?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=600&auto=format&fit=crop" alt="Спецтехника" class="dest-img">
+                </div>
+                <div class="dest-info">
+                    <div class="dest-title-row">
+                        <h3>Лендинг спецтехники</h3>
+                        <div class="dest-rating" style="background: var(--text-main);">ИП</div>
+                    </div>
+                    <div class="dest-loc"><i class="fa-solid fa-bolt"></i> Конверсия в заявку 12,4%<br>Интеграция лидов в Telegram</div>
+                </div>
+            </div>
+            <!-- Кейс 3 -->
+            <div class="dest-card">
+                <div class="dest-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" alt="Производство" class="dest-img">
+                </div>
+                <div class="dest-info">
+                    <div class="dest-title-row">
+                        <h3>Корпоративный портал</h3>
+                        <div class="dest-rating" style="background: #475569;">Corp</div>
+                    </div>
+                    <div class="dest-loc"><i class="fa-solid fa-shield-halved"></i> Бесшовная интеграция с 1С<br>Защита данных по ФЗ-152</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТАРИФЫ -->
+    <section id="pricing" class="container section-wrapper journey-section">
+        <h2>Выберите решение под вашу задачу</h2>
+        <p>Вы получаете полностью готовый продукт. Интеллектуальная собственность на исходный код фиксируется в Договоре без мелкого шрифта.</p>
+        
+        <div class="journey-grid">
+            <!-- Тариф ИП -->
+            <div class="j-card active" onclick="selectPackage('ip')">
+                <span class="j-badge">Сайт в вашу собственность</span>
+                <div class="j-price">от 5 000 ₽</div>
+                <h3 class="j-title">Старт (ИП)</h3>
+                <ul class="j-features">
+                    <li>Индивидуальный Landing Page</li>
+                    <li>Прием заявок напрямую в Telegram</li>
+                    <li>Адаптация под мобильные устройства</li>
+                    <li>Базовая SEO-оптимизация кода</li>
+                </ul>
+            </div>
+
+            <!-- Тариф ООО -->
+            <div class="j-card" onclick="selectPackage('ooo')">
+                <span class="j-badge">✓ Работаем по ЭДО</span>
+                <div class="j-price">от 20 000 ₽</div>
+                <h3 class="j-title">Бизнес (ООО)</h3>
+                <ul class="j-features">
+                    <li>Многостраничный корпоративный сайт</li>
+                    <li>Удобная панель управления (CMS)</li>
+                    <li>Подключение онлайн-оплаты и кассы</li>
+                    <li>Сбор согласий по ФЗ-152</li>
+                </ul>
+            </div>
+
+            <!-- Тариф Enterprise -->
+            <div class="j-card" onclick="selectPackage('corp')">
+                <span class="j-badge">✓ Сложные архитектуры</span>
+                <div class="j-price">от 70 000 ₽</div>
+                <h3 class="j-title">Enterprise</h3>
+                <ul class="j-features">
+                    <li>Кастомная Backend-разработка</li>
+                    <li>Интеграция с базами 1С и CRM</li>
+                    <li>Личные кабинеты пользователей</li>
+                    <li>Защита серверов от DDoS-атак</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="btn-wide-wrapper">
+            <button id="main-cta-btn" class="btn-wide" onclick="openSelectedModal()">
+                <span id="cta-text">Рассчитать стоимость в Telegram</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- ОТВЕТСТВЕННОСТЬ -->
+    <section class="container section-wrapper">
+        <div class="section-head" style="margin-bottom: 40px; text-align: center;">
+            <h2 style="font-size: 32px;">Прозрачное сотрудничество</h2>
+            <p style="margin: 0 auto;">Мы четко разделяем зоны ответственности, чтобы у бизнеса не возникало иллюзий или скрытых расходов.</p>
+        </div>
+        <div class="promo-grid">
+            <div class="resp-box">
+                <h3><div class="resp-icon"><i class="fa-solid fa-laptop-code"></i></div> Наша ответственность</h3>
+                <ul>
+                    <li>Разработка чистого, валидного и быстрого кода.</li>
+                    <li>Настройка форм согласно требованиям ФЗ-152.</li>
+                    <li>Адаптация интерфейса под все устройства.</li>
+                    <li>Передача исключительных прав по Акту.</li>
+                </ul>
+            </div>
+            <div class="resp-box">
+                <h3><div class="resp-icon"><i class="fa-solid fa-handshake"></i></div> Ваша ответственность</h3>
+                <ul>
+                    <li>Оплата личного хостинга (около 300 ₽/мес) из реестра РКН.</li>
+                    <li>Ежегодное продление доменного имени (.ru / .com).</li>
+                    <li>Оформление коммерческих шрифтов (при необходимости).</li>
+                    <li>Сверка услуг разработки с вашими кодами ОКВЭД.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="container section-wrapper faq-section">
+        <h2>Часто задаваемые вопросы</h2>
+        
+        <details>
+            <summary>Почему ваши цены начинаются от 5 000 ₽? <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>Мы автоматизировали базовую сборку кода и не закладываем в смету работу громоздкого штата менеджеров. Вы общаетесь напрямую с техническими специалистами, что радикально снижает издержки. Вы платите только за часы разработчика.</p>
+        </details>
+        
+        <details>
+            <summary>Кому будет принадлежать домен и сам код сайта? <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>Строго вам. Мы регистрируем домен и хостинг на ваш паспорт (ИП) или на реквизиты компании (ООО). Код передается по договору. Никто не сможет отключить вас за неуплату «абонентской платы платформы», так как вы владеете кодом.</p>
+        </details>
+        
+        <details>
+            <summary>Что входит в базовую SEO-оптимизацию? <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>Мы прописываем семантические теги (Title, Description), настраиваем структуру H1-H6, создаем файлы sitemap.xml и robots.txt, а также обеспечиваем зеленую зону скорости загрузки по стандартам Google Core Web Vitals.</p>
+        </details>
+
+        <details>
+            <summary>Смогу ли я сам вносить изменения в текст на сайте? <i class="fa-solid fa-chevron-down"></i></summary>
+            <p>В тарифах «Бизнес» и «Enterprise» мы подключаем CMS (систему управления контентом), где вы можете менять тексты, фото и товары без программиста. В тарифе «Старт» изменения вносятся через код по выданной нами инструкции.</p>
+        </details>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo">
+                <i class="fa-solid fa-code"></i> Свой Код
+            </div>
+            
+            <!-- Юридический дисклеймер по ТЗ -->
+            <div class="footer-disclaimer">
+                «Свой Код» — это торговое имя самозанятого разработчика и не является зарегистрированной организацией. Название используется только в целях идентификации услуг на данном сайте и не имеет юридической силы.
+            </div>
+
+            <div class="footer-links">
+                <a href="#">Публичная Оферта</a>
+                <a href="#">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+    
+    <!-- Модалка ИП -->
+    <div class="modal-overlay" id="modal-ip">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Заявка: Старт (ИП)</h3>
+            <p class="modal-subtitle">Оставьте данные, мы подготовим расчет в Telegram.</p>
+            
+            <div class="form-group">
+                <label>Имя или название ИП</label>
+                <input type="text" placeholder="ИП Иванов А.А.">
+            </div>
+            <div class="form-group">
+                <label>Телефон / Telegram</label>
+                <input type="text" placeholder="+7 (999) 000-00-00">
+            </div>
+            
+            <label class="fz-checkbox">
+                <input type="checkbox" checked>
+                <span>Я даю согласие на обработку персональных данных в соответствии с <a href="#">ФЗ-152</a>.</span>
+            </label>
+            
+            <button class="btn-submit">Отправить заявку</button>
+        </div>
+    </div>
+
+    <!-- Модалка ООО -->
+    <div class="modal-overlay" id="modal-ooo">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Заявка: Бизнес (ООО)</h3>
+            <p class="modal-subtitle">Запросите коммерческое предложение и проект договора.</p>
+            
+            <div class="form-group">
+                <label>Название компании / ИНН</label>
+                <input type="text" placeholder="ООО Вектор">
+            </div>
+            <div class="form-group">
+                <label>Корпоративный Email</label>
+                <input type="email" placeholder="info@company.ru">
+            </div>
+            
+            <label class="fz-checkbox">
+                <input type="checkbox" checked>
+                <span>Я даю согласие на обработку персональных данных в соответствии с <a href="#">ФЗ-152</a>.</span>
+            </label>
+            
+            <button class="btn-submit" style="background: var(--text-main);">Запросить КП и Договор</button>
+        </div>
+    </div>
+
+    <!-- Модалка Enterprise -->
+    <div class="modal-overlay" id="modal-corp">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Аудит: Enterprise</h3>
+            <p class="modal-subtitle">Запишитесь на техническое обсуждение архитектуры.</p>
+            
+            <div class="form-group">
+                <label>ФИО ЛПР</label>
+                <input type="text" placeholder="Руководитель проекта">
+            </div>
+            <div class="form-group">
+                <label>Email для связи</label>
+                <input type="email" placeholder="director@domain.ru">
+            </div>
+            
+            <label class="fz-checkbox">
+                <input type="checkbox" checked>
+                <span>Я даю согласие на обработку персональных данных в соответствии с <a href="#">ФЗ-152</a>.</span>
+            </label>
+            
+            <button class="btn-submit" style="background: var(--text-main);">Записаться на аудит</button>
+        </div>
+    </div>
+
+    <!-- ЛОГИКА ИНТЕРФЕЙСА -->
+    <script>
+        let currentPackage = 'ip';
+        
+        const packageData = {
+            'ip': { btnText: 'Рассчитать стоимость в Telegram', btnColor: 'var(--blue-light)', textColor: 'var(--text-main)' },
+            'ooo': { btnText: 'Получить смету и договор', btnColor: 'var(--text-main)', textColor: '#fff' },
+            'corp': { btnText: 'Записаться на аудит', btnColor: 'var(--blue)', textColor: '#fff' }
+        };
+
+        function selectPackage(pkgId) {
+            currentPackage = pkgId;
+            
+            // Переключаем визуальную активность карточек
+            const cards = document.querySelectorAll('.j-card');
+            cards.forEach(c => c.classList.remove('active'));
+            
+            const activeCard = document.querySelector(`.j-card[onclick="selectPackage('${pkgId}')"]`);
+            if(activeCard) activeCard.classList.add('active');
+
+            // Обновляем главную кнопку
+            const ctaBtn = document.getElementById('main-cta-btn');
+            const ctaText = document.getElementById('cta-text');
+            
+            ctaText.innerText = packageData[pkgId].btnText;
+            ctaBtn.style.background = packageData[pkgId].btnColor;
+            ctaBtn.style.color = packageData[pkgId].textColor;
+        }
+
+        function openSelectedModal() {
+            const modal = document.getElementById('modal-' + currentPackage);
+            if(modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+            }
+        }
+
+        function closeModals() {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(m => m.classList.remove('active'));
+            document.body.style.overflow = ''; // Возвращаем скролл
+        }
+
+        // Закрытие модалки по клику на темный фон
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if(e.target === this) closeModals();
+            });
+        });
+    </script>
+</body>
+</html>

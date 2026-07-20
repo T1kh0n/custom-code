@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- БАЗОВЫЕ ПЕРЕМЕННЫЕ И РЕСЕТ --- */
         * {
             margin: 0;
             padding: 0;
@@ -47,7 +46,6 @@
             position: relative;
         }
 
-        /* --- ХЕДЕР --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -91,6 +89,8 @@
             cursor: pointer;
             border: none;
             transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
         }
         .btn-black:hover {
             background: var(--blue);
@@ -98,7 +98,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- HERO СЕКЦИЯ --- */
         .hero-wrapper {
             margin-top: 10px;
             margin-bottom: 80px;
@@ -163,6 +162,8 @@
             background: var(--blue); color: #fff; padding: 18px 40px; border-radius: 40px;
             font-size: 14px; font-weight: 600; box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
             border: none; cursor: pointer; transition: 0.3s;
+            display: inline-block;
+            text-align: center;
         }
         .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
 
@@ -204,7 +205,6 @@
         .km-icon { width: 40px; height: 40px; background: var(--bg-gray); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 16px; }
         .km-text p { font-size: 11px; color: var(--text-muted); line-height: 1.4; max-width: 250px; font-weight: 500; }
 
-        /* --- БЛОК БОЛЕЙ (BENEFITS) --- */
         .section-wrapper { padding: 60px 0; }
         
         .section-head {
@@ -232,7 +232,6 @@
         .benefit-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; letter-spacing: -0.5px; }
         .benefit-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
 
-        /* --- ПОРТФОЛИО --- */
         .dest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         
         .dest-card { display: flex; flex-direction: column; gap: 20px; cursor: pointer; }
@@ -253,7 +252,6 @@
         .dest-loc { font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 16px; position: relative; font-weight: 500; }
         .dest-loc i { position: absolute; left: 0; top: 4px; color: var(--text-main); font-size: 12px; }
 
-        /* --- ТАРИФЫ --- */
         .journey-section { text-align: center; }
         .journey-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
         .journey-section > p { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto 50px auto; line-height: 1.6; }
@@ -294,10 +292,10 @@
             background: var(--blue-light); padding: 22px 40px; border-radius: 20px;
             font-size: 16px; font-weight: 700; color: var(--text-main); width: 100%; max-width: 500px;
             border: none; cursor: pointer; transition: 0.3s;
+            text-align: left;
         }
         .btn-wide:hover { background: var(--text-main); color: #fff; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
-        /* --- БЛОК ОТВЕТСТВЕННОСТИ --- */
         .promo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         
         .resp-box {
@@ -311,7 +309,6 @@
         .resp-box ul li { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; padding-left: 25px; position: relative; line-height: 1.6; font-weight: 500;}
         .resp-box ul li::before { content: '\f061'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 0; top: 2px; color: var(--blue); font-size: 12px; }
 
-        /* --- FAQ СЕКЦИЯ --- */
         .faq-section { max-width: 800px; margin: 0 auto; }
         .faq-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 40px; text-align: center; letter-spacing: -1px; }
         
@@ -326,7 +323,6 @@
         
         details p { font-size: 14px; color: var(--text-muted); margin-top: 15px; line-height: 1.7; font-weight: 500; }
 
-        /* --- ФУТЕР --- */
         footer { border-top: 1px solid #f3f4f6; padding: 50px 0; margin-top: 60px; }
         .footer-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center; }
         .footer-logo { font-size: 20px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
@@ -341,72 +337,27 @@
         .footer-links a { font-size: 12px; font-weight: 600; color: var(--text-main); text-transform: uppercase; text-decoration: underline; text-decoration-color: #e5e7eb; text-underline-offset: 4px; }
         .footer-links a:hover { color: var(--blue); text-decoration-color: var(--blue); }
 
-        /* --- МОДАЛЬНЫЕ ОКНА --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(17, 24, 39, 0.6); backdrop-filter: blur(4px);
-            display: none; justify-content: center; align-items: center; z-index: 1000; padding: 20px;
-            opacity: 0; transition: opacity 0.3s ease;
-        }
-        .modal-overlay.active { display: flex; opacity: 1; }
-        
-        .modal-content {
-            background: #fff; width: 100%; max-width: 460px; border-radius: 40px;
-            padding: 50px 40px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            transform: translateY(20px); transition: transform 0.3s ease;
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-
-        .modal-close {
-            position: absolute; top: 25px; right: 30px; font-size: 20px; color: var(--text-muted);
-            background: none; border: none; cursor: pointer; transition: 0.3s; width: 32px; height: 32px;
-            display: flex; align-items: center; justify-content: center; border-radius: 50%;
-        }
-        .modal-close:hover { color: var(--text-main); background: var(--bg-gray); transform: rotate(90deg); }
-
-        .modal-title { font-size: 24px; font-weight: 800; margin-bottom: 5px; letter-spacing: -0.5px; }
-        .modal-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 30px; font-weight: 500; }
-
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .form-group input {
-            width: 100%; padding: 16px 20px; border-radius: 16px; border: 2px solid transparent;
-            background: var(--bg-gray); font-size: 14px; color: var(--text-main); font-weight: 500;
-            transition: 0.3s; outline: none;
-        }
-        .form-group input:focus { background: #fff; border-color: var(--blue); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.05); }
-
-        .fz-checkbox { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 30px; cursor: pointer; }
-        .fz-checkbox input { margin-top: 4px; accent-color: var(--blue); width: 16px; height: 16px; cursor: pointer; }
-        .fz-checkbox span { font-size: 11px; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
-        .fz-checkbox a { color: var(--blue); text-decoration: underline; font-weight: 600; }
-
-        .btn-submit {
-            width: 100%; background: var(--blue); color: #fff; padding: 18px; border-radius: 20px;
-            font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s;
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-        }
-        .btn-submit:hover { background: var(--text-main); box-shadow: 0 10px 25px rgba(17, 24, 39, 0.2); transform: translateY(-2px); }
-
-        /* --- АДАПТИВНОСТЬ (ИСПРАВЛЕНИЕ КОСЯКОВ) --- */
         @media (max-width: 992px) {
             header nav { display: none; }
-            .hero-container { height: auto; padding: 50px 30px; align-items: flex-start; flex-direction: column; border-radius: 32px; }
+            .hero-container { height: auto; padding: 50px 20px; align-items: flex-start; flex-direction: column; border-radius: 32px; }
             .hero-indicator, .know-more-cutout { display: none; }
-            .hero-content { max-width: 100%; }
+            .hero-content { max-width: 100%; padding: 0 10px; }
             .hero-title { font-size: 42px; }
-            .benefits-grid, .dest-grid, .journey-grid, .promo-grid { grid-template-columns: 1fr; }
+            .benefits-grid, .dest-grid, .journey-grid, .promo-grid { grid-template-columns: 1fr; padding: 0 10px; }
             .j-card { min-height: auto; }
             .j-card.active { transform: translateY(0); }
             .j-card:hover { transform: translateY(0); }
             .btn-wide-wrapper { padding: 0 20px; }
+            .section-head { padding: 0 10px; }
+            .faq-section { padding: 0 10px; }
+            footer { padding: 50px 20px; }
         }
 
         @media (max-width: 576px) {
             .hero-title { font-size: 36px; }
             .hero-actions { flex-direction: column; align-items: stretch; }
             .btn-blue, .play-btn { width: 100%; text-align: center; border-radius: 16px; }
-            .play-btn { display: none; } /* Скрываем кнопку со стрелкой на мобилках для чистоты */
+            .play-btn { display: none; }
         }
     </style>
 </head>
@@ -423,11 +374,10 @@
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-            <button class="btn-black" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Обсудить проект</button>
+            <a href="https://t.me/wkl240" target="_blank" class="btn-black">Обсудить проект</a>
         </header>
     </div>
 
-    <!-- HERO СЕКЦИЯ -->
     <section class="container hero-wrapper">
         <div class="hero-container">
             
@@ -442,7 +392,7 @@
                 <h1 class="hero-title">Ваш сайт —<br>Ваш код.</h1>
                 <p class="hero-desc">Создаем сайты, исходный код которых на 100% принадлежит вашему бизнесу. Никаких ежемесячных подписок, скрытых платежей и ограничений платформ.</p>
                 <div class="hero-actions">
-                    <button class="btn-blue" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Выбрать тариф</button>
+                    <a href="https://t.me/wkl240" target="_blank" class="btn-blue">Выбрать тариф</a>
                     <a href="#benefits" class="play-btn"><i class="fa-solid fa-arrow-down"></i></a>
                 </div>
             </div>
@@ -465,7 +415,6 @@
         </div>
     </section>
 
-    <!-- БЛОК БОЛЕЙ -->
     <section id="benefits" class="container section-wrapper">
         <div class="section-head">
             <h2>Почему бизнес выбирает независимость?</h2>
@@ -491,7 +440,6 @@
         </div>
     </section>
 
-    <!-- ПОРТФОЛИО -->
     <section id="portfolio" class="container section-wrapper">
         <div class="section-head">
             <h2>Выполненные проекты</h2>
@@ -499,10 +447,8 @@
         </div>
 
         <div class="dest-grid">
-            <!-- Кейс 1 -->
-            <div class="dest-card">
+            <div class="dest-card" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <div class="dest-img-wrapper">
-                    <!-- Заглушка, можно заменить на реальное фото -->
                     <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop" alt="Оптовый магазин" class="dest-img">
                 </div>
                 <div class="dest-info">
@@ -513,8 +459,7 @@
                     <div class="dest-loc"><i class="fa-solid fa-arrow-trend-up"></i> Скорость загрузки +300%<br>Рост заявок из поиска на 45%</div>
                 </div>
             </div>
-            <!-- Кейс 2 -->
-            <div class="dest-card">
+            <div class="dest-card" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <div class="dest-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1656432898164-7634c508cf71?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=600&auto=format&fit=crop" alt="Спецтехника" class="dest-img">
                 </div>
@@ -526,8 +471,7 @@
                     <div class="dest-loc"><i class="fa-solid fa-bolt"></i> Конверсия в заявку 12,4%<br>Интеграция лидов в Telegram</div>
                 </div>
             </div>
-            <!-- Кейс 3 -->
-            <div class="dest-card">
+            <div class="dest-card" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <div class="dest-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop" alt="Производство" class="dest-img">
                 </div>
@@ -542,14 +486,12 @@
         </div>
     </section>
 
-    <!-- ТАРИФЫ -->
     <section id="pricing" class="container section-wrapper journey-section">
         <h2>Выберите решение под вашу задачу</h2>
         <p>Вы получаете полностью готовый продукт. Интеллектуальная собственность на исходный код фиксируется в Договоре без мелкого шрифта.</p>
         
         <div class="journey-grid">
-            <!-- Тариф ИП -->
-            <div class="j-card active" onclick="selectPackage('ip')">
+            <div class="j-card active" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <span class="j-badge">Сайт в вашу собственность</span>
                 <div class="j-price">от 5 000 ₽</div>
                 <h3 class="j-title">Старт (ИП)</h3>
@@ -561,8 +503,7 @@
                 </ul>
             </div>
 
-            <!-- Тариф ООО -->
-            <div class="j-card" onclick="selectPackage('ooo')">
+            <div class="j-card" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <span class="j-badge">✓ Работаем по ЭДО</span>
                 <div class="j-price">от 20 000 ₽</div>
                 <h3 class="j-title">Бизнес (ООО)</h3>
@@ -574,8 +515,7 @@
                 </ul>
             </div>
 
-            <!-- Тариф Enterprise -->
-            <div class="j-card" onclick="selectPackage('corp')">
+            <div class="j-card" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <span class="j-badge">✓ Сложные архитектуры</span>
                 <div class="j-price">от 70 000 ₽</div>
                 <h3 class="j-title">Enterprise</h3>
@@ -589,14 +529,13 @@
         </div>
 
         <div class="btn-wide-wrapper">
-            <button id="main-cta-btn" class="btn-wide" onclick="openSelectedModal()">
+            <button id="main-cta-btn" class="btn-wide" onclick="window.open('https://t.me/wkl240', '_blank')">
                 <span id="cta-text">Рассчитать стоимость в Telegram</span>
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </section>
 
-    <!-- ОТВЕТСТВЕННОСТЬ -->
     <section class="container section-wrapper">
         <div class="section-head" style="margin-bottom: 40px; text-align: center;">
             <h2 style="font-size: 32px;">Прозрачное сотрудничество</h2>
@@ -624,7 +563,6 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="container section-wrapper faq-section">
         <h2>Часто задаваемые вопросы</h2>
         
@@ -640,160 +578,21 @@
         
         <details>
             <summary>Что входит в базовую SEO-оптимизацию? <i class="fa-solid fa-chevron-down"></i></summary>
-            <p>Мы прописываем семантические теги (Title, Description), настраиваем структуру H1-H6, создаем файлы sitemap.xml и robots.txt, а также обеспечиваем зеленую зону скорости загрузки по стандартам Google Core Web Vitals.</p>
-        </details>
-
-        <details>
-            <summary>Смогу ли я сам вносить изменения в текст на сайте? <i class="fa-solid fa-chevron-down"></i></summary>
-            <p>В тарифах «Бизнес» и «Enterprise» мы подключаем CMS (систему управления контентом), где вы можете менять тексты, фото и товары без программиста. В тарифе «Старт» изменения вносятся через код по выданной нами инструкции.</p>
+            <p>Мы прописываем семантические теги (Title, Description), настраиваем структуру H1-H6, создаем правильную карту сайта и робот-файлы.</p>
         </details>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container footer-inner">
-            <div class="footer-logo">
-                <i class="fa-solid fa-code"></i> Свой Код
-            </div>
-            
-            <!-- Юридический дисклеймер по ТЗ -->
+            <div class="footer-logo"><i class="fa-solid fa-code"></i> Свой Код</div>
             <div class="footer-disclaimer">
-                «Свой Код» — это торговое имя самозанятого разработчика и не является зарегистрированной организацией. Название используется только в целях идентификации услуг на данном сайте и не имеет юридической силы.
+                Информация на сайте не является публичной офертой. Все права на интеллектуальную собственность защищаются законодательством РФ.
             </div>
-
             <div class="footer-links">
-                <a href="#">Публичная Оферта</a>
-                <a href="#">Политика конфиденциальности</a>
+                <a href="https://t.me/wkl240" target="_blank">Связаться в Telegram</a>
             </div>
         </div>
     </footer>
 
-    <!-- МОДАЛЬНЫЕ ОКНА -->
-    
-    <!-- Модалка ИП -->
-    <div class="modal-overlay" id="modal-ip">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="modal-title">Заявка: Старт (ИП)</h3>
-            <p class="modal-subtitle">Оставьте данные, мы подготовим расчет в Telegram.</p>
-            
-            <div class="form-group">
-                <label>Имя или название ИП</label>
-                <input type="text" placeholder="ИП Иванов А.А.">
-            </div>
-            <div class="form-group">
-                <label>Телефон / Telegram</label>
-                <input type="text" placeholder="+7 (999) 000-00-00">
-            </div>
-            
-            <label class="fz-checkbox">
-                <input type="checkbox" checked>
-                <span>Я даю согласие на обработку персональных данных в соответствии с <a href="#">ФЗ-152</a>.</span>
-            </label>
-            
-            <button class="btn-submit">Отправить заявку</button>
-        </div>
-    </div>
-
-    <!-- Модалка ООО -->
-    <div class="modal-overlay" id="modal-ooo">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="modal-title">Заявка: Бизнес (ООО)</h3>
-            <p class="modal-subtitle">Запросите коммерческое предложение и проект договора.</p>
-            
-            <div class="form-group">
-                <label>Название компании / ИНН</label>
-                <input type="text" placeholder="ООО Вектор">
-            </div>
-            <div class="form-group">
-                <label>Корпоративный Email</label>
-                <input type="email" placeholder="info@company.ru">
-            </div>
-            
-            <label class="fz-checkbox">
-                <input type="checkbox" checked>
-                <span>Я даю согласие на обработку персональных данных в соответствии с <a href="#">ФЗ-152</a>.</span>
-            </label>
-            
-            <button class="btn-submit" style="background: var(--text-main);">Запросить КП и Договор</button>
-        </div>
-    </div>
-
-    <!-- Модалка Enterprise -->
-    <div class="modal-overlay" id="modal-corp">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModals()"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="modal-title">Аудит: Enterprise</h3>
-            <p class="modal-subtitle">Запишитесь на техническое обсуждение архитектуры.</p>
-            
-            <div class="form-group">
-                <label>ФИО ЛПР</label>
-                <input type="text" placeholder="Руководитель проекта">
-            </div>
-            <div class="form-group">
-                <label>Email для связи</label>
-                <input type="email" placeholder="director@domain.ru">
-            </div>
-            
-            <label class="fz-checkbox">
-                <input type="checkbox" checked>
-                <span>Я даю согласие на обработку персональных данных в соответствии с <a href="#">ФЗ-152</a>.</span>
-            </label>
-            
-            <button class="btn-submit" style="background: var(--text-main);">Записаться на аудит</button>
-        </div>
-    </div>
-
-    <!-- ЛОГИКА ИНТЕРФЕЙСА -->
-    <script>
-        let currentPackage = 'ip';
-        
-        const packageData = {
-            'ip': { btnText: 'Рассчитать стоимость в Telegram', btnColor: 'var(--blue-light)', textColor: 'var(--text-main)' },
-            'ooo': { btnText: 'Получить смету и договор', btnColor: 'var(--text-main)', textColor: '#fff' },
-            'corp': { btnText: 'Записаться на аудит', btnColor: 'var(--blue)', textColor: '#fff' }
-        };
-
-        function selectPackage(pkgId) {
-            currentPackage = pkgId;
-            
-            // Переключаем визуальную активность карточек
-            const cards = document.querySelectorAll('.j-card');
-            cards.forEach(c => c.classList.remove('active'));
-            
-            const activeCard = document.querySelector(`.j-card[onclick="selectPackage('${pkgId}')"]`);
-            if(activeCard) activeCard.classList.add('active');
-
-            // Обновляем главную кнопку
-            const ctaBtn = document.getElementById('main-cta-btn');
-            const ctaText = document.getElementById('cta-text');
-            
-            ctaText.innerText = packageData[pkgId].btnText;
-            ctaBtn.style.background = packageData[pkgId].btnColor;
-            ctaBtn.style.color = packageData[pkgId].textColor;
-        }
-
-        function openSelectedModal() {
-            const modal = document.getElementById('modal-' + currentPackage);
-            if(modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Блокируем скролл фона
-            }
-        }
-
-        function closeModals() {
-            const modals = document.querySelectorAll('.modal-overlay');
-            modals.forEach(m => m.classList.remove('active'));
-            document.body.style.overflow = ''; // Возвращаем скролл
-        }
-
-        // Закрытие модалки по клику на темный фон
-        document.querySelectorAll('.modal-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                if(e.target === this) closeModals();
-            });
-        });
-    </script>
 </body>
 </html>

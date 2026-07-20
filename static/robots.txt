@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://custom-code.132073.xyz/sitemap.xml

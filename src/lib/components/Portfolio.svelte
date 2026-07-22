@@ -15,7 +15,7 @@
     {#each config.portfolio as project}
       <article class="flex flex-col gap-5 cursor-pointer group h-full text-left">
         <div class="overflow-hidden rounded-lg h-[300px] shadow-soft bg-bg-surface border border-gray-100">
-          <img src="{project.image}" alt="{project.title}" loading="lazy" class="w-full h-full object-cover opacity-90 transition-transform duration-500 ease-out group-hover:scale-105" />
+          <img src="{project.image}" alt="{project.title}" loading="lazy" decoding="async" class="w-full h-full object-cover opacity-90 transition-transform duration-500 ease-out group-hover:scale-105" />
         </div>
         <div class="px-2 flex flex-col flex-grow">
           <div class="flex justify-between items-start mb-3">

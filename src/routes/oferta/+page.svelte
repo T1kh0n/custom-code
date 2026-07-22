@@ -5,6 +5,7 @@
 <svelte:head>
   <title>Публичная Оферта | {config.brandName}</title>
   <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="{config.domain}/oferta" />
 </svelte:head>
 
 <section class="py-12 md:py-20 w-full max-w-[1200px] mx-auto px-6">

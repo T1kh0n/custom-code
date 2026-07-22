@@ -66,6 +66,11 @@
 <svelte:head>
   <title>{config.brandName} | Разработка независимых сайтов для бизнеса</title>
   <meta name="description" content="Создаем сайты, исходный код которых на 100% принадлежит вашему бизнесу. Никаких подписок и конструкторов. Строго по ФЗ-152." />
+  <link rel="canonical" href="{config.domain}/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{config.brandName} | Разработка независимых сайтов для бизнеса" />
+  <meta property="og:description" content="Создаем сайты, исходный код которых на 100% принадлежит вашему бизнесу. Никаких подписок и конструкторов. Строго по ФЗ-152." />
+  <meta property="og:url" content="{config.domain}/" />
   {@html `<script type="application/ld+json">${JSON.stringify(schemaJSON)}</script>`}
 </svelte:head>
 

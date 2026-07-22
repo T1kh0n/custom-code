@@ -38,14 +38,14 @@
   });
 
   afterNavigate(() => {
-    activeSection = '';
+    if (!isHome) {
+      activeSection = '';
+    }
     setTimeout(initObserver, 100);
   });
 
   onDestroy(() => {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('scroll', handleScroll);
-    }
+    if (typeof window !== 'undefined') window.removeEventListener('scroll', handleScroll);
     if (observer) observer.disconnect();
   });
 </script>

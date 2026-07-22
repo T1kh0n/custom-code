@@ -5,6 +5,7 @@
 <svelte:head>
   <title>Политика конфиденциальности | {config.brandName}</title>
   <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="{config.domain}/privacy" />
 </svelte:head>
 
 <section class="py-12 md:py-20 w-full max-w-[1200px] mx-auto px-6">
